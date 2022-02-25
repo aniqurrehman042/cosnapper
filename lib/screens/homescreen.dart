@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     tabController = TabController(length: 2, vsync: this);
-    var tabBarItem =  Align ( alignment: Alignment.centerLeft,child:TabBar(
+    var tabBarItem =  TabBar(
       isScrollable: true,
             controller: tabController,
             labelColor: Theme.of(context).primaryColor,
@@ -39,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
       ],
       indicatorColor: Colors.white,
-    )
     );
 
     // ignore: unnecessary_new
