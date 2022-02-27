@@ -8,6 +8,7 @@ class AppColor {
   static const Color blueIconColor = Color(0xFF2A8CFF);
   static const Color blueColor = Color(0xFF2A8CFF);
   static const Color transparentColor = Colors.transparent;
+  static const Color appbarColor = Color(0xFFf9fafb);
 }
 
 class AppAssets {
@@ -47,4 +48,11 @@ class AppString {
 
   //homescreen
   static const textone_h = 'Deine Bilder';
+  static const texttwo_h = 'Alle Bilder im Bundle kaufen (24,99€)';
+
+  //imagedetailscreen
+  static const textone_i = 'DC-3346';
+  static const texttwo_i = '24,99€';
+  static const textthree_i = 'ln den\nWarenkorb';
+  static const textfour_i = 'oder..';
 }

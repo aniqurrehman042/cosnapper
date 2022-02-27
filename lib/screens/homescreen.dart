@@ -1,3 +1,4 @@
+import 'package:cosnapper/screens/imagedetailscreen.dart';
 import 'package:cosnapper/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -11,153 +12,251 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController tabController;
 
-
   @override
   Widget build(BuildContext context) {
     tabController = TabController(length: 2, vsync: this);
-    var tabBarItem =  TabBar(
+    var tabBarItem = TabBar(
       isScrollable: true,
-            controller: tabController,
-            labelColor: Theme.of(context).primaryColor,
-            unselectedLabelColor: Theme.of(context).hintColor,
-            indicator: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Theme.of(context).primaryColor,
-                  width: 2,
-                ),
-              ),
-            ),
+      controller: tabController,
+      labelColor: Theme.of(context).primaryColor,
+      unselectedLabelColor: Theme.of(context).hintColor.withOpacity(0.2),
+
       // ignore: prefer_const_literals_to_create_immutables
       tabs: [
-          const Tab(
-          icon:  Text('ALLE BILDER'),
+        const Tab(
+          icon: Text(
+            'ALLE BILDER',
+            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+          ),
         ),
-         // ignore: prefer_const_constructors
-         Tab(
-          icon:  const Text('FAVORITEN'),
+        // ignore: prefer_const_constructors
+        Tab(
+          icon: const Text(
+            'FAVORITEN',
+            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+          ),
         ),
       ],
-      indicatorColor: Colors.white,
+      indicatorColor: Colors.transparent,
     );
 
     // ignore: unnecessary_new
-    var listItem = new ListView.builder(
-      itemCount: 20,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title:  Card(
-            elevation: 5.0,
-            child:  Container(
-              alignment: Alignment.center,
-              margin:  EdgeInsets.only(top: 10.0, bottom: 10.0),
-              child:  Text("ListItem $index"),
-            ),
-          ),
-          onTap: () {
-            },
-        );
-      },
-    );
 
-    var gridView =  GridView.builder(
-        itemCount: 20,
-        gridDelegate:
-             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (BuildContext context, int index) {
-          return  GestureDetector(
-            child:  Card(
-              elevation: 5.0,
-              child:  Container(
-                alignment: Alignment.center,
-                child:  Text('Item $index'),
+    var gridView = Container(
+        decoration: const BoxDecoration(color: AppColor.whiteColor),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            const SizedBox(height: 25, width: double.infinity),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(primary: AppColor.blueColor),
+                    onPressed: () {
+                      //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen()));
+                    },
+                    child: const Text(
+                      AppString.texttwo_h,
+                      style: TextStyle(
+                          fontSize: 16,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                          color: AppColor.whiteColor),
+                    )),
               ),
             ),
-            onTap: () {
-            },
-          );
-        });
+            const SizedBox(height: 10, width: double.infinity),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: GridView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  // ignore: prefer_const_constructors
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ImageDetailScreen()));
+                        },
+                        child: Card(
+                          elevation: 5.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(AppAssets.women),
+                                    fit: BoxFit.cover)),
+                            alignment: Alignment.topRight,
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                                child: Container(
+                                  height: 15,
+                                  width: 15,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(AppAssets.heartempty),
+                                      //fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            //child: Text('Item $index'),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            )
+          ],
+        )));
+
+    var favouritegridView = Container(
+        decoration: const BoxDecoration(color: AppColor.whiteColor),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: GridView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  // ignore: prefer_const_constructors
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                        child: Card(
+                          elevation: 5.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(AppAssets.womenone),
+                                    fit: BoxFit.cover)),
+                            alignment: Alignment.topRight,
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                                child: Container(
+                                  height: 15,
+                                  width: 15,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(AppAssets.heartfilled),
+                                      //fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            //child: Text('Item $index'),
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    );
+                  }),
+            )
+          ],
+        )));
 
     return Scaffold(
-      backgroundColor: AppColor.greyBackgroundColor,
-      appBar: AppBar(
-        bottomOpacity: 1.0,
-        elevation: 0.0,
-        // ignore: prefer_const_constructors
-        centerTitle: true,
-        title: const Text(
-          AppString.textone_h,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: AppColor.blueColor,
-              fontSize: 20,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color(0xFFf9fafb),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: AppColor.blueIconColor,
+        backgroundColor: AppColor.greyBackgroundColor.withOpacity(0.1),
+        appBar: AppBar(
+          elevation: 0.0,
+          // ignore: prefer_const_constructors
+          centerTitle: true,
+          title: const Text(
+            AppString.textone_h,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: AppColor.blueColor,
+                fontSize: 20,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold),
           ),
-          onPressed: () {},
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: IconButton(
-              onPressed: () {},
-              icon: Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(AppAssets.shoppingcart),
-                    fit: BoxFit.contain,
+          backgroundColor: AppColor.appbarColor,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColor.blueIconColor,
+            ),
+            onPressed: () {},
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: IconButton(
+                onPressed: () {},
+                icon: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(AppAssets.shoppingcart),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
-        bottom: tabBarItem,
-      ),
-      body: DefaultTabController(
-        length: 2,
-       child: TabBarView(
-          controller: tabController,
-          children: [
-            listItem,
-            gridView,
+            )
           ],
-       )
-      
-      )
-      // CustomTabView(
-      //   initPosition: initPosition,
-      //   itemCount: data.length,
-      //   tabBuilder: (context, index) => Tab(text: data[index]),
-      //   pageBuilder: (context, index) => Container(
-      //       color: Colors.white, child: Center(child: GridView(
-      //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      //         crossAxisCount: 2),
-      //     children: List.generate(10, (index) {
-      //       return Container(
-      //         height: 100.0,
-      //         width: 100.0,
-              
-      //         child: Text(index.toString()),
-      //       );
-      //     }),
-      //   ))),
-      //   onPositionChange: (index) {
-      //     print('current position: $index');
-      //     initPosition = index;
-      //   },
-      //   // ignore: avoid_print
-      //   onScroll: (position) => print('$position'), stub: Container(),
-      // ),
-    );
+          bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(kToolbarHeight),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: AppColor.greyBackgroundColor.withOpacity(0.3),
+                      child: tabBarItem))),
+        ),
+        body: DefaultTabController(
+            length: 2,
+            child: TabBarView(
+              controller: tabController,
+              children: [gridView, favouritegridView],
+            ))
+        // CustomTabView(
+        //   initPosition: initPosition,
+        //   itemCount: data.length,
+        //   tabBuilder: (context, index) => Tab(text: data[index]),
+        //   pageBuilder: (context, index) => Container(
+        //       color: Colors.white, child: Center(child: GridView(
+        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //         crossAxisCount: 2),
+        //     children: List.generate(10, (index) {
+        //       return Container(
+        //         height: 100.0,
+        //         width: 100.0,
+
+        //         child: Text(index.toString()),
+        //       );
+        //     }),
+        //   ))),
+        //   onPositionChange: (index) {
+        //     print('current position: $index');
+        //     initPosition = index;
+        //   },
+        //   // ignore: avoid_print
+        //   onScroll: (position) => print('$position'), stub: Container(),
+        // ),
+        );
   }
 }
 
