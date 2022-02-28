@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:cosnapper/models/womenmodel.dart';
+import 'package:cosnapper/screens/checkoutscreen.dart';
 import 'package:cosnapper/screens/imagedetailscreen.dart';
 import 'package:cosnapper/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -10,39 +14,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late TabController tabController;
+ 
+ Widget fetchata(){
+    String arrayObjsText =
+        '{"tags": [{"id": 1,"image" : "assets/images/women.png"}, '
+        '{"id": 2,"image" : "assets/images/womenone.png"}, '
+        '{"id": 3,"image" : "assets/images/womentwo.png"}, '
+        '{"id": 4,"image" : "assets/images/womenthree.png"}, '
+        '{"id": 5,"image" : "assets/images/womenfour.png"}, '
+        '{"id": 6,"image" : "assets/images/womenfive.png"}, '
+        '{"id": 7,"image" : "assets/images/womensix.png"}, '
+        '{"id": 8,"image" : "assets/images/womenseven.png"}]}';
 
-  @override
-  Widget build(BuildContext context) {
-    tabController = TabController(length: 2, vsync: this);
-    var tabBarItem = TabBar(
-      isScrollable: true,
-      controller: tabController,
-      labelColor: Theme.of(context).primaryColor,
-      unselectedLabelColor: Theme.of(context).hintColor.withOpacity(0.2),
-
-      // ignore: prefer_const_literals_to_create_immutables
-      tabs: [
-        const Tab(
-          icon: Text(
-            'ALLE BILDER',
-            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
-          ),
-        ),
-        // ignore: prefer_const_constructors
-        Tab(
-          icon: const Text(
-            'FAVORITEN',
-            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
-          ),
-        ),
-      ],
-      indicatorColor: Colors.transparent,
-    );
-
-    // ignore: unnecessary_new
-
-    var gridView = Container(
+ var tagObjsJson = jsonDecode(arrayObjsText)['tags'] as List;
+    List<Tag> tagObjs =
+    tagObjsJson.map((tagJson) => Tag.fromJson(tagJson)).toList();
+    return Container(
         decoration: const BoxDecoration(color: AppColor.whiteColor),
         child: SingleChildScrollView(
             child: Column(
@@ -75,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: GridView.builder(
                   primary: false,
                   shrinkWrap: true,
-                  itemCount: 10,
+                  itemCount: tagObjs.length,
                   // ignore: prefer_const_constructors
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
@@ -92,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: Container(
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage(AppAssets.women),
+                                    // ignore: unnecessary_string_interpolations
+                                    image: AssetImage("${tagObjs[index].image}"),
                                     fit: BoxFit.cover)),
                             alignment: Alignment.topRight,
                             child: IconButton(
@@ -121,7 +109,48 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             )
           ],
         )));
+ }
+  late TabController tabController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      fetchata();
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    tabController = TabController(length: 2, vsync: this);
+    var tabBarItem = TabBar(
+      isScrollable: true,
+      controller: tabController,
+      labelColor: Theme.of(context).primaryColor,
+      unselectedLabelColor: Theme.of(context).hintColor.withOpacity(0.2),
 
+      // ignore: prefer_const_literals_to_create_immutables
+      tabs: [
+        const Tab(
+          icon: Text(
+            'ALLE BILDER',
+            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+          ),
+        ),
+        // ignore: prefer_const_constructors
+        Tab(
+          icon: const Text(
+            'FAVORITEN',
+            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+          ),
+        ),
+      ],
+      indicatorColor: Colors.transparent,
+    );
+
+    // ignore: unnecessary_new
+
+    var gridView = fetchata();
     var favouritegridView = Container(
         decoration: const BoxDecoration(color: AppColor.whiteColor),
         child: SingleChildScrollView(
@@ -203,7 +232,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             Padding(
               padding: const EdgeInsets.only(right: 15.0),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const CheckoutScreen()));
+                       
+                },
                 icon: Container(
                   height: 30,
                   width: 30,

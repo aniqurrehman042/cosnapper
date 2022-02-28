@@ -16,7 +16,7 @@ class AppAssets {
   static const String backarrow = 'assets/images/backarrow.png';
   static const String background = 'assets/images/background.png';
   static const String card = 'assets/images/card.png';
-  static const String circlegrey = 'assets/images/circlegrey.png';
+  static const String circlegrey = 'assets/images/ciclegrey.png';
   static const String circleblue = 'assets/images/circleblue.png';
   static const String circlewhite = 'assets/images/circlewhite.png';
   static const String dollar = 'assets/images/dollar.png';
@@ -27,7 +27,7 @@ class AppAssets {
   static const String shipped = 'assets/images/shipped.png';
   static const String shoppingcart = 'assets/images/shoppingcart.png';
   static const String stripe = 'assets/images/stripe.png';
-  static const String trick = 'assets/images/trick.png';
+  static const String trick = 'assets/images/tick.png';
   static const String women = 'assets/images/women.png';
   static const String womenone = 'assets/images/womenone.png';
   static const String womentwo = 'assets/images/womentwo.png';
@@ -55,4 +55,26 @@ class AppString {
   static const texttwo_i = '24,99€';
   static const textthree_i = 'ln den\nWarenkorb';
   static const textfour_i = 'oder..';
+
+  //checkoutviashopingcart
+  static const textone_cvc = 'Warenkorb';
+  static const circletextone = 'Warenkorb';
+  static const adresse = 'Adresse';
+  static const bezahlung = 'Bezahlung';
+  static const bestatigt = 'Bestatigt';
+  static const priceone_cvc = '13,99€';
+  static const priceonetag_cvc = 'DC-3346';
+  static const pricetwotag_cvc = 'DC-3351';
+  static const pricetwo_cvc = '13,99€';
+  static const checkout = 'Checkout';
+  static const total = 'Gesamt';
+  static const ammount = '27,99€';
+
+
+  //weiterscreen
+  static const weiter = 'Weiter';
+
+
+  //finalcheckoutscreen
+  static const finalcheckoutbutton = 'Bilder jetzt herunterladen';
 }

@@ -2,8 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cosnapper/utils/constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable, use_key_in_widget_constructors
 class ImageDetailScreen extends StatefulWidget {
-  ImageDetailScreen({Key? key}) : super(key: key);
+
 
   @override
   State<ImageDetailScreen> createState() => _ImageDetailScreenState();
@@ -49,7 +50,9 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+               
+              },
               icon: Container(
                 height: 30,
                 width: 30,
@@ -85,21 +88,18 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
               ),
               items: imgList
                   .map((item) => Center(
-                          child: Hero(
-                        tag: 'back',
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: const Padding(
-                            child: Image(
-                              image: AssetImage(AppAssets.women),
-                              fit: BoxFit.cover,
-                              width: 1000,
+                          child: Container(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: const Padding(
+                              child: Image(
+                                image: AssetImage(AppAssets.women),
+                                fit: BoxFit.cover,
+                                width: 1000,
+                              ),
+                              padding: EdgeInsets.symmetric(horizontal: 0.0),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 0.0),
-                          ),
-                        ),
-                      )))
+                          )))
                   .toList(),
             )),
             Row(
