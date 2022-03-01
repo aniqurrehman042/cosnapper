@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cosnapper/models/womenmodel.dart';
+import 'package:cosnapper/screens/bundelcheckoutscreen.dart';
 import 'package:cosnapper/screens/checkoutscreen.dart';
 import 'package:cosnapper/screens/imagedetailscreen.dart';
 import 'package:cosnapper/utils/constants.dart';
@@ -44,8 +45,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     style:
                         ElevatedButton.styleFrom(primary: AppColor.blueColor),
                     onPressed: () {
-                      //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen()));
-                    },
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const BundelCheckoutScreen()));
+                     },
                     child: const Text(
                       AppString.texttwo_h,
                       style: TextStyle(
@@ -156,6 +158,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: SingleChildScrollView(
             child: Column(
           children: [
+             const SizedBox(height: 25, width: double.infinity),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(primary: AppColor.blueColor),
+                    onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const BundelCheckoutScreen()));
+                     },
+                    child: const Text(
+                      AppString.texttwo_h,
+                      style: TextStyle(
+                          fontSize: 16,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                          color: AppColor.whiteColor),
+                    )),
+              ),
+            ),
+            const SizedBox(height: 10, width: double.infinity),
+            
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: GridView.builder(

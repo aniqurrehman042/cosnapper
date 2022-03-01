@@ -117,13 +117,18 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
-                child: const Text(
-                  AppString.textthree_l,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: AppColor.textColor,
-                    fontSize: 16,
-                      fontFamily: 'Poppins'),
+                child: GestureDetector(
+                  onTap: (){
+                     _BottomSheet(context);
+                  },
+                  child: const Text(
+                    AppString.textthree_l,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColor.textColor,
+                      fontSize: 16,
+                        fontFamily: 'Poppins'),
+                  ),
                 ),
               ),
             ],
@@ -132,4 +137,87 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+   void _BottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+              height: MediaQuery.of(context).size.height / 2,
+              child: Center(
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                     Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                        color: AppColor.blueColor,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: IconButton(
+                                        onPressed: (){
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(
+                                          Icons.close_outlined,
+                                          size: 10,
+                                          color: AppColor.whiteColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                    ],
+                  ),
+                  
+
+Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40.0, vertical: 5.0),
+                    child: Row(
+                      children: 
+                        [Expanded(
+                          child: Text(
+                            
+                          "Dein persönlicher Zugang zu deinen Bilder Findet sich auf der Karte, die du nach dem Shooting von unserem CoSnapper bekommen hast",
+                          style:  TextStyle(
+                          
+                            color: AppColor.blueColor,
+                            fontSize: 12,
+                            fontFamily: 'Poppins',
+                          
+                          ),
+                          maxLines: 5,
+                          
+                          textAlign: TextAlign.center,                        ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+SizedBox(
+                height: 100,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset(AppAssets.arrow),
+              ),
+              SizedBox(
+                height: 100,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset(AppAssets.card),
+              ),
+
+
+
+
+                  
+                ]),
+              ));
+        });
+  }
 }
+

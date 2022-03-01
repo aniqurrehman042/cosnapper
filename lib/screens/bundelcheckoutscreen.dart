@@ -1,17 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:cosnapper/screens/enteraddressscreen.dart';
 import 'package:cosnapper/utils/constants.dart';
-import 'package:flutter/material.dart';
 
-class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+class BundelCheckoutScreen extends StatefulWidget {
+  const BundelCheckoutScreen({ Key? key }) : super(key: key);
 
   @override
-  _CheckoutScreenState createState() => _CheckoutScreenState();
+  _BundelCheckoutScreenState createState() => _BundelCheckoutScreenState();
 }
 
-class _CheckoutScreenState extends State<CheckoutScreen> {
+class _BundelCheckoutScreenState extends State<BundelCheckoutScreen> {
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
               elevation: 0.0,
@@ -265,18 +265,38 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        height: 100,
-                                        width: 100,
-                                        decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
+                                      child: Stack(
+                                        children: 
+                                          [Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(10),
+                                                ),
+                                                image: DecorationImage(
+                                                    image: const AssetImage(
+                                                        AppAssets.womenone),
+                                                    fit: BoxFit.contain)),
+                                            alignment: Alignment.topRight,
+                                          ),
+                                          Positioned(
+                                            top: 40,
+                                            child: Container(
+                                              height: 100,
+                                              width: 100,
+                                              decoration: const BoxDecoration(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10),
+                                                  ),
+                                                  image: DecorationImage(
+                                                      image: const AssetImage(
+                                                          AppAssets.womenone),
+                                                      fit: BoxFit.contain)),
+                                              alignment: Alignment.topRight,
                                             ),
-                                            image: DecorationImage(
-                                                image: const AssetImage(
-                                                    AppAssets.womenone),
-                                                fit: BoxFit.contain)),
-                                        alignment: Alignment.topRight,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -291,16 +311,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                         // ignore: prefer_const_literals_to_create_immutables
                                         children: [
                                           // ignore: prefer_const_constructors
-                                          const Text(
-                                            AppString.priceonetag_cvc,
-                                            style: TextStyle(
-                                                color: AppColor.blueColor,
-                                                fontSize: 18,
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.bold),
+                                          Container(
+                                            child: const Text(
+                                              AppString.buncletag_cvc,
+                                              style: TextStyle(
+                                                  color: AppColor.blueColor,
+                                                  fontSize: 18,
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                           const Text(
-                                            AppString.priceone_cvc,
+                                            AppString.bundleammount,
                                             style: TextStyle(
                                               color: AppColor.blueColor,
                                               fontSize: 16,
@@ -335,88 +357,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               ),
                             ),
                           ),
-                           Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              elevation: 5.0,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        height: 100,
-                                        width: 100,
-                                        decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
-                                            ),
-                                            image: DecorationImage(
-                                                image: const AssetImage(
-                                                    AppAssets.womenone),
-                                                fit: BoxFit.contain)),
-                                        alignment: Alignment.topRight,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: 10.0, left: 10.0),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        // ignore: prefer_const_literals_to_create_immutables
-                                        children: [
-                                          // ignore: prefer_const_constructors
-                                          const Text(
-                                            AppString.priceonetag_cvc,
-                                            style: TextStyle(
-                                                color: AppColor.blueColor,
-                                                fontSize: 18,
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          const Text(
-                                            AppString.priceone_cvc,
-                                            style: TextStyle(
-                                              color: AppColor.blueColor,
-                                              fontSize: 16,
-                                              fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(5),
-                                        ),
-                                        color: AppColor.blueColor,
-                                      ),
-                                      alignment: Alignment.topRight,
-                                      child: const Icon(
-                                        Icons.close_outlined,
-                                        size: 20,
-                                        color: AppColor.whiteColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                         
+                        
                              ],
                       ),
                     ),
@@ -453,7 +394,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       ),
                                     ),
                                     const Text(
-                                      AppString.ammount,
+                                      AppString.bundleammount,
                                       style: TextStyle(
                                         color: AppColor.blueColor,
                                         fontSize: 16,

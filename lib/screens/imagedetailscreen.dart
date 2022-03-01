@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cosnapper/screens/bundelcheckoutscreen.dart';
+import 'package:cosnapper/screens/checkoutscreen.dart';
 import 'package:cosnapper/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +53,9 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
             padding: const EdgeInsets.only(right: 15.0),
             child: IconButton(
               onPressed: () {
-               
+                     Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const CheckoutScreen()));
+              
               },
               icon: Container(
                 height: 30,
@@ -230,7 +234,7 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
                     style:
                         ElevatedButton.styleFrom(primary: AppColor.blueColor),
                     onPressed: () {
-                      //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const BundelCheckoutScreen()));
                     },
                     child: const Text(
                       AppString.texttwo_h,

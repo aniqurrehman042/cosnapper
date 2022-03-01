@@ -37,6 +37,7 @@ class AppAssets {
   static const String womensix = 'assets/images/womensix.png';
   static const String womenseven = 'assets/images/womenseven.png';
   static const String womeneight = 'assets/images/womeneight.png';
+  static const String arrow = 'assets/images/arrow.png';
 }
 
 class AppString {
@@ -69,6 +70,8 @@ class AppString {
   static const checkout = 'Checkout';
   static const total = 'Gesamt';
   static const ammount = '27,99€';
+  static const bundleammount = '24,99€';
+  static const buncletag_cvc = 'Alle Bilder (Bundle)';
 
 
   //weiterscreen
