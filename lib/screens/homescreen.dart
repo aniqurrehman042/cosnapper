@@ -15,21 +15,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
- 
- Widget fetchata(){
-    String arrayObjsText =
-        '{"tags": [{"id": 1,"image" : "assets/images/women.png"}, '
-        '{"id": 2,"image" : "assets/images/womenone.png"}, '
-        '{"id": 3,"image" : "assets/images/womentwo.png"}, '
-        '{"id": 4,"image" : "assets/images/womenthree.png"}, '
-        '{"id": 5,"image" : "assets/images/womenfour.png"}, '
-        '{"id": 6,"image" : "assets/images/womenfive.png"}, '
-        '{"id": 7,"image" : "assets/images/womensix.png"}, '
-        '{"id": 8,"image" : "assets/images/womenseven.png"}]}';
+  List<bool> _likes = List.filled(8, true);
+  bool liked = false;
 
- var tagObjsJson = jsonDecode(arrayObjsText)['tags'] as List;
+  _pressed() {
+    setState(() {
+      liked = !liked;
+    });
+  }
+
+  Widget fetchata() {
+    String arrayObjsText =
+        '{"tags": [{"id": 1,"image" : "assets/images/women.png", "liked": false }, '
+        '{"id": 2,"image" : "assets/images/womenone.png", "liked": false }, '
+        '{"id": 3,"image" : "assets/images/womentwo.png", "liked": false }, '
+        '{"id": 4,"image" : "assets/images/womenthree.png", "liked": false }, '
+        '{"id": 5,"image" : "assets/images/womenfour.png", "liked": false }, '
+        '{"id": 6,"image" : "assets/images/womenfive.png", "liked": false }, '
+        '{"id": 7,"image" : "assets/images/womensix.png", "liked": false }, '
+        '{"id": 8,"image" : "assets/images/womenseven.png", "liked": false }]}';
+
+    var tagObjsJson = jsonDecode(arrayObjsText)['tags'] as List;
     List<Tag> tagObjs =
-    tagObjsJson.map((tagJson) => Tag.fromJson(tagJson)).toList();
+        tagObjsJson.map((tagJson) => Tag.fromJson(tagJson)).toList();
     return Container(
         decoration: const BoxDecoration(color: AppColor.whiteColor),
         child: SingleChildScrollView(
@@ -45,13 +53,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     style:
                         ElevatedButton.styleFrom(primary: AppColor.blueColor),
                     onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const BundelCheckoutScreen()));
-                     },
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const BundelCheckoutScreen()));
+                    },
                     child: const Text(
                       AppString.texttwo_h,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 15,
                           //fontWeight: FontWeight.bold,
                           fontFamily: 'Poppins',
                           color: AppColor.whiteColor),
@@ -82,25 +91,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     // ignore: unnecessary_string_interpolations
-                                    image: AssetImage("${tagObjs[index].image}"),
+                                    image:
+                                        AssetImage("${tagObjs[index].image}"),
                                     fit: BoxFit.cover)),
                             alignment: Alignment.topRight,
                             child: IconButton(
-                              onPressed: () {},
-                              icon: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 0, 0, 15),
-                                child: Container(
-                                  height: 15,
-                                  width: 15,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(AppAssets.heartempty),
-                                      //fit: BoxFit.contain,
+                              onPressed: () {
+                                setState(() {
+                                  _likes[index] = !_likes[index];
+                                });
+                              },
+                              icon: _likes[index]
+                                  ? Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 0, 0, 15),
+                                      child: Container(
+                                        height: 15,
+                                        width: 15,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                AppAssets.heartempty),
+                                            //fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 0, 0, 15),
+                                      child: Container(
+                                        height: 15,
+                                        width: 15,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                AppAssets.heartfilled),
+                                            //fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
                             ),
                             //child: Text('Item $index'),
                           ),
@@ -111,17 +142,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             )
           ],
         )));
- }
+  }
+
   late TabController tabController;
   @override
   void initState() {
     // TODO: implement initState
-    
+
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
       fetchata();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     tabController = TabController(length: 2, vsync: this);
@@ -129,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       isScrollable: true,
       controller: tabController,
       labelColor: Theme.of(context).primaryColor,
-      unselectedLabelColor: Theme.of(context).hintColor.withOpacity(0.2),
+      unselectedLabelColor: Theme.of(context).primaryColor.withOpacity(0.2),
 
       // ignore: prefer_const_literals_to_create_immutables
       tabs: [
@@ -158,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: SingleChildScrollView(
             child: Column(
           children: [
-             const SizedBox(height: 25, width: double.infinity),
+            const SizedBox(height: 25, width: double.infinity),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 50,
@@ -168,13 +201,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     style:
                         ElevatedButton.styleFrom(primary: AppColor.blueColor),
                     onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const BundelCheckoutScreen()));
-                     },
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const BundelCheckoutScreen()));
+                    },
                     child: const Text(
                       AppString.texttwo_h,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 15,
                           //fontWeight: FontWeight.bold,
                           fontFamily: 'Poppins',
                           color: AppColor.whiteColor),
@@ -182,7 +216,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             const SizedBox(height: 10, width: double.infinity),
-            
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: GridView.builder(
@@ -205,22 +238,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     fit: BoxFit.cover)),
                             alignment: Alignment.topRight,
                             child: IconButton(
-                              onPressed: () {},
-                              icon: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 0, 0, 15),
-                                child: Container(
-                                  height: 15,
-                                  width: 15,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(AppAssets.heartfilled),
-                                      //fit: BoxFit.contain,
+                                onPressed: () {},
+                                icon: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                                  child: Container(
+                                    height: 15,
+                                    width: 15,
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        image:
+                                            AssetImage(AppAssets.heartfilled),
+                                        //fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
+                                )),
                             //child: Text('Item $index'),
                           ),
                         ),
@@ -260,9 +293,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               padding: const EdgeInsets.only(right: 15.0),
               child: IconButton(
                 onPressed: () {
-                     Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const CheckoutScreen()));
-                       
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const CheckoutScreen()));
                 },
                 icon: Container(
                   height: 30,

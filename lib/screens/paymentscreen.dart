@@ -507,7 +507,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           child: const Text(
                             AppString.weiter,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontFamily: 'Poppins',
                                 color: AppColor.whiteColor),
                           )),

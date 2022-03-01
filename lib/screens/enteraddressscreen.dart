@@ -609,7 +609,7 @@ class _EnterAddressScreenState extends State<EnterAddressScreen> {
                           child: const Text(
                             AppString.weiter,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontFamily: 'Poppins',
                                 color: AppColor.whiteColor),
                           )),

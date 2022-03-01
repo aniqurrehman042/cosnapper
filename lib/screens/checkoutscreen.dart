@@ -481,7 +481,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                         child: const Text(
                                           AppString.checkout,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontFamily: 'Poppins',
                                               color: AppColor.whiteColor),
                                         )),

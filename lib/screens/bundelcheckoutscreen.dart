@@ -257,7 +257,7 @@ class _BundelCheckoutScreenState extends State<BundelCheckoutScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Card(
-                              elevation: 5.0,
+                              elevation: 1.0,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +316,7 @@ class _BundelCheckoutScreenState extends State<BundelCheckoutScreen> {
                                               AppString.buncletag_cvc,
                                               style: TextStyle(
                                                   color: AppColor.blueColor,
-                                                  fontSize: 18,
+                                                  fontSize: 16,
                                                   fontFamily: 'Poppins',
                                                   fontWeight: FontWeight.bold),
                                             ),

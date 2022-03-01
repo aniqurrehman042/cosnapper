@@ -353,7 +353,7 @@ textAlign: TextAlign.center,                        ),
                           child: const Text(
                             AppString.finalcheckoutbutton,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontFamily: 'Poppins',
                                 color: AppColor.whiteColor),
                           )),

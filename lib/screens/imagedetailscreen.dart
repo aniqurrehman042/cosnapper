@@ -76,8 +76,10 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
           children: [
             Container(
                 child: CarouselSlider(
+                  
               carouselController: _controller,
               options: CarouselOptions(
+                viewportFraction: 1,
                 height: 500,
                 //aspectRatio: 16/9
                 aspectRatio: 1.0,
@@ -143,7 +145,7 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
               width: MediaQuery.of(context).size.width,
               height: 60,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 85.0),
+                padding: const EdgeInsets.symmetric(horizontal: 70.0),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: AppColor.whiteColor,
@@ -159,11 +161,11 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 3.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(3.0),
+                            Expanded(
+                              flex: 2,
                               child: Container(
                                 child: const Text(
                                   AppString.texttwo_i,
@@ -174,12 +176,11 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(3.0),
+                            
+                            Expanded(
+                              flex: 3,
                               child: Container(
+                                padding: EdgeInsets.only(left: 5),
                                 child: const Text(
                                   AppString.textthree_i,
                                   style: TextStyle(
@@ -190,7 +191,8 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
                                 ),
                               ),
                             ),
-                            Container(
+                            Expanded(
+                               flex: 2,
                               child: IconButton(
                                 onPressed: () {},
                                 icon: Container(
@@ -199,7 +201,7 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(AppAssets.shoppingcart),
-                                      fit: BoxFit.contain,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
@@ -238,6 +240,7 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
                     },
                     child: const Text(
                       AppString.texttwo_h,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 16,
                           //fontWeight: FontWeight.bold,
